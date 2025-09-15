@@ -46,7 +46,7 @@ src/main/java/com/swake/app
 
 ### 1. Clone & Build
 ```bash
-git clone https://github.com/사용자명/swake-backend.git
+git clone https://github.com/seunghyunyyy/swake-backend.git
 cd swake-backend
 ./gradlew build
 ```
