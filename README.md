@@ -87,30 +87,82 @@ spring.jpa.properties.hibernate.format_sql=true
 ### Auth
 - **회원가입**  
   `POST /api/auth/signup`  
-  Body: `{"email":"...","password":"..."}`
+  Request Body: `{"email":"String","password":"String"}`  
+  Response Body:  
+  ```json
+  {
+      "success": Boolean,
+      "message": String,
+      "data": {
+          "id": Long,
+          "email": String,
+          "apiKey": String
+      }
+  }
 
 - **로그인**  
   `POST /api/auth/signin`  
-  Body: `{"email":"...","password":"..."}`
+  Request Body: `{"email":"...","password":"..."}`  
+  Response Body:
+  ```json
+  {
+      "success": Boolean,
+      "message": String,
+      "data": {
+          "id": Long,
+          "email": String,
+          "apiKey": String
+      }
+  }
 
 ### Session
 - **세션 시작**  
   `POST /api/sessions/start`  
   Header: `X-API-KEY`  
-  Body: `{"deviceLabel":"..."}`
+  Request Body: `{"deviceLabel":"..."}`  
+  Response Body:
+  ```json
+  {
+      "success": Boolean,
+      "message": String,
+      "data": {
+          "id": Long,
+          "active": Boolean
+      }
+  }
 
 - **세션 종료**  
   `POST /api/sessions/end`  
-  Header: `X-API-KEY`
+  Header: `X-API-KEY`  
+  Response Body:
+  ```json
+  {
+      "success": Boolean,
+      "message": String,
+      "data": {
+          "id": Long,
+          "active": Boolean
+      }
+  }
 
 ### Ingest
 - **심박수 전송**  
   `POST /api/ingest/heart-rate`  
-  Body: `{"source":"WATCH","bpm":78}`
+  Request Body: `{"source":"WATCH","bpm":78}`  
+  Response Body:
+  ```json
+  {
+      "success": Boolean,
+      "message": String,
+      "data": {
+          "id": Long,
+          "bpm": Integer
+      }
+  }
 
 - **졸음 이벤트 전송**  
   `POST /api/ingest/drowsiness`  
-  Body:
+  Request Body:
   ```json
   {
     "source": "CAMERA",
@@ -118,11 +170,31 @@ spring.jpa.properties.hibernate.format_sql=true
     "score": 63,
     "note": "eyes closed 2s"
   }
-  ```
+  ```  
+  Response Body:
+  ```json
+  {
+      "success": Boolean,
+      "message": String,
+      "data": {
+          "id": Long,
+          "score": Integer
+      }
+  }
 
 ### Stats
 - **요약 통계**  
-  `GET /api/stats/summary`
+  `GET /api/stats/summary`  
+  Response Body:
+  ```json
+  {
+      "success": Boolean,
+      "message": String,
+      "data": {
+          "heartRates": Long,
+          "events": Long
+      }
+  }
 
 ---
 
