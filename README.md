@@ -91,12 +91,12 @@ spring.jpa.properties.hibernate.format_sql=true
   Response Body:  
   ```json
   {
-      "success": Boolean,
-      "message": String,
+      "success": "Boolean",
+      "message": "String",
       "data": {
-          "id": Long,
-          "email": String,
-          "apiKey": String
+          "id": "Long",
+          "email": "String",
+          "apiKey": "String"
       }
   }
 
@@ -106,12 +106,12 @@ spring.jpa.properties.hibernate.format_sql=true
   Response Body:
   ```json
   {
-      "success": Boolean,
-      "message": String,
+      "success": "Boolean",
+      "message": "String",
       "data": {
-          "id": Long,
-          "email": String,
-          "apiKey": String
+          "id": "Long",
+          "email": "String",
+          "apiKey": "String"
       }
   }
 
@@ -123,11 +123,11 @@ spring.jpa.properties.hibernate.format_sql=true
   Response Body:
   ```json
   {
-      "success": Boolean,
-      "message": String,
+      "success": "Boolean",
+      "message": "String",
       "data": {
-          "id": Long,
-          "active": Boolean
+          "id": "Long",
+          "active": "Boolean"
       }
   }
 
@@ -137,11 +137,11 @@ spring.jpa.properties.hibernate.format_sql=true
   Response Body:
   ```json
   {
-      "success": Boolean,
-      "message": String,
+      "success": "Boolean",
+      "message": "String",
       "data": {
-          "id": Long,
-          "active": Boolean
+          "id": "Long",
+          "active": "Boolean"
       }
   }
 
@@ -150,35 +150,39 @@ spring.jpa.properties.hibernate.format_sql=true
   `POST /api/ingest/heart-rate`  
   Request Body: `{"source":"WATCH","bpm":78}`  
   Response Body:
+    - bpm: MIN(1) Integer
   ```json
   {
-      "success": Boolean,
-      "message": String,
+      "success": "Boolean",
+      "message": "String",
       "data": {
-          "id": Long,
-          "bpm": Integer
+          "id": "Long",
+          "bpm": "Integer"
       }
   }
 
 - **졸음 이벤트 전송**  
   `POST /api/ingest/drowsiness`  
-  Request Body:
+  Request Body:  
+  - source parameter: { WATCH, PHONE, CAMERA }
+  - severity parameter: { LOW, MEDIUM, HIGH }
+  - score: MIN(0) ~ MAX(100) integer
   ```json
   {
-    "source": "CAMERA",
-    "severity": "MEDIUM",
-    "score": 63,
-    "note": "eyes closed 2s"
+    "source": "Enum",
+    "severity": "Enum",
+    "score": "Integer",
+    "note": "String"
   }
   ```  
   Response Body:
   ```json
   {
-      "success": Boolean,
-      "message": String,
+      "success": "Boolean",
+      "message": "String",
       "data": {
-          "id": Long,
-          "score": Integer
+          "id": "Long",
+          "score": "Integer"
       }
   }
 
@@ -188,11 +192,11 @@ spring.jpa.properties.hibernate.format_sql=true
   Response Body:
   ```json
   {
-      "success": Boolean,
-      "message": String,
+      "success": "Boolean",
+      "message": "String",
       "data": {
-          "heartRates": Long,
-          "events": Long
+          "heartRates": "Long",
+          "events": "Long"
       }
   }
 
